@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow.keras.models import load_model 
 from sklearn.preprocessing import StandardScaler
 
-model = load_model('emoji_sentiment_model.h5')
+#model = load_model('emoji_sentiment_model.h5')
 
 def load_emoji_data(csv_file):
     df = pd.read_csv(csv_file)

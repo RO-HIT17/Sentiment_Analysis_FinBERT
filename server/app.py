@@ -5,6 +5,7 @@ from emoji_sentiment import load_emoji_data, analyze_emoji_sentiment
 from general_sentiment_analysis import analyze
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import word_suggestions as ss
 
 app = Flask(__name__)
 CORS(app)
@@ -100,6 +101,19 @@ def analyze_paragraph():
         })
 
     return jsonify(response)
+
+@app.route('/suggestions', methods=['POST'])
+def get_suggestions():
+    data = request.get_json()
+
+    if 'sentence' not in data:
+        return jsonify({"error": "No sentence provided"}), 400
+
+    sentence = data['sentence']
+    
+    result = ss.process_sentence(sentence)
+    
+    return jsonify(result), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
