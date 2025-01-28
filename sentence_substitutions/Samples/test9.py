@@ -3,7 +3,7 @@ from nltk.corpus import wordnet as wn
 from nltk.tokenize import word_tokenize
 import nltk
 from itertools import product
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, util
 from scipy.spatial.distance import cosine
 
 # Download necessary NLTK resources
@@ -100,7 +100,7 @@ def process_sentence(sentence):
     
     print("\nAll Possible Sentences:")
     for i, new_sentence in enumerate(possible_sentences, 1):
-        similarity = compute_similarity(sentence, new_sentence)
+        similarity = calculate_semantic_similarity(sentence, new_sentence)
         print(f"{i}: {new_sentence} (Similarity: {similarity:.4f})")
 
 # Example Usage
