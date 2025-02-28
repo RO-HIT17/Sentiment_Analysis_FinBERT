@@ -36,7 +36,12 @@ export default function SentimentAnalyzer() {
 
       setResult(analysisData);
       const suggestionsArray = suggestionsData.suggestions || suggestionsData;
-      setSuggestions(Array.isArray(suggestionsArray) ? suggestionsArray : Object.values(suggestionsArray));
+      // Limit to 10 suggestions
+      setSuggestions(
+        Array.isArray(suggestionsArray) 
+          ? suggestionsArray.slice(0, 10) 
+          : Object.values(suggestionsArray).slice(0, 10)
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -78,21 +83,6 @@ export default function SentimentAnalyzer() {
         <Button className="mt-4" onClick={analyzeSentiment} color="primary" auto>
           Analyze Text
         </Button>
-
-        {suggestions && suggestions.length > 0 && (
-          <div className="mt-6 p-6 border rounded shadow-lg w-full">
-            <h2 className="text-3xl font-semibold text-purple-600 mb-6 text-center">
-              Writing Suggestions
-            </h2>
-            <div className="space-y-4">
-              {suggestions.map((suggestion, index) => (
-                <div key={index} className="p-4 rounded-lg border border-gray-200">
-                  {formatSuggestion(suggestion)}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {result && (
           <div className="mt-6 p-6 border rounded shadow-lg w-full max-w-5xl">
@@ -184,6 +174,22 @@ export default function SentimentAnalyzer() {
             </div>
           </div>
         )}
+
+        {suggestions && suggestions.length > 0 && (
+          <div className="mt-6 p-6 border rounded shadow-lg w-full">
+            <h2 className="text-3xl font-semibold text-purple-600 mb-6 text-center">
+              Writing Suggestions
+            </h2>
+            <div className="space-y-4">
+              {suggestions.map((suggestion, index) => (
+                <div key={index} className="p-4 rounded-lg border border-gray-200">
+                  {formatSuggestion(suggestion)}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
       </div>
     </section>
   );
