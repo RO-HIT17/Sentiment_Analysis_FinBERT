@@ -62,13 +62,14 @@ export default function LaunchOptimizationPage() {
         ],
         suggested_price: competitorPricing ? `Similar to competitors: ${competitorPricing}` : "Pricing depends on your market research",
         price_explanation: "This recommendation is a fallback due to API issues. Consider market positioning and competitor analysis.",
-        suggested_caption: `Perfect for ${ageGroup || 'all ages'} in ${location || 'any location'} interested in ${interests || 'your product'}.`
+        suggested_caption: `Perfect for ${ageGroup || 'all ages'} in ${location || 'any location'} interested in ${interests || 'your product'}.`,
+        caption_sentiment_explanation: "A properly crafted marketing caption creates emotional connection with your audience. The fallback caption uses basic personalization to create relevance."
       };
       
       // Generate the prompt for Gemini API
       console.log("Generating prompt with inputs:", { 
         productDescription, 
-        competitorPricing, 
+        competitorPricing,  
         targetAudience: { age: ageGroup, location, interests } 
       });
       
@@ -232,7 +233,6 @@ export default function LaunchOptimizationPage() {
               </div>
             )}
 
-            {/* Change onClick to onPress for NextUI Button */}
             <Button
               color="primary"
               onPress={handleOptimization}
@@ -281,6 +281,13 @@ export default function LaunchOptimizationPage() {
                 <div className="p-4 bg-purple-50 rounded-lg">
                   <h3 className="text-xl font-bold text-purple-700 mb-2">Suggested Caption</h3>
                   <p className="text-lg">{result.suggested_caption}</p>
+                  
+                  {result.caption_sentiment_explanation && (
+                    <div className="mt-2 pt-2 border-t border-purple-200">
+                      <h4 className="text-lg font-semibold text-purple-600">Why This Caption Works</h4>
+                      <p className="text-md">{result.caption_sentiment_explanation}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </CardBody>

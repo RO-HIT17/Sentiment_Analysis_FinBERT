@@ -117,6 +117,7 @@ Based on this information, please provide the following in valid JSON format onl
 - Suggest 3-4 potential product names
 - A suggested competitive price point with an explanation for why this price is appropriate
 - A compelling marketing caption tailored to the target audience
+- An explanation of why the marketing caption will emotionally resonate with customers and drive engagement
 
 Return ONLY a JSON object with the following format:
 {
@@ -128,7 +129,8 @@ Return ONLY a JSON object with the following format:
   ],
   "suggested_price": "Your suggested price",
   "price_explanation": "Your explanation for why this price point is appropriate",
-  "suggested_caption": "Your suggested marketing caption"
+  "suggested_caption": "Your suggested marketing caption",
+  "caption_sentiment_explanation": "Explanation of how the caption's emotional tone and sentiment will attract the target audience"
 }
 `;
 }
