@@ -55,8 +55,13 @@ export default function LaunchOptimizationPage() {
     try {
       // Create a fallback result in case API fails
       const fallbackResult = {
-        product_name: `Optimized ${productDescription.split(' ')[0]}`,
+        product_names: [
+          `Optimized ${productDescription.split(' ')[0]}`,
+          `Premium ${productDescription.split(' ')[0]}`,
+          `Ultra ${productDescription.split(' ')[0]}`,
+        ],
         suggested_price: competitorPricing ? `Similar to competitors: ${competitorPricing}` : "Pricing depends on your market research",
+        price_explanation: "This recommendation is a fallback due to API issues. Consider market positioning and competitor analysis.",
         suggested_caption: `Perfect for ${ageGroup || 'all ages'} in ${location || 'any location'} interested in ${interests || 'your product'}.`
       };
       
@@ -250,13 +255,27 @@ export default function LaunchOptimizationPage() {
               
               <div className="flex flex-col gap-4 mt-4">
                 <div className="p-4 bg-blue-50 rounded-lg">
-                  <h3 className="text-xl font-bold text-blue-700 mb-2">Suggested Product Name</h3>
-                  <p className="text-lg">{result.product_name}</p>
+                  <h3 className="text-xl font-bold text-blue-700 mb-2">Suggested Product Names</h3>
+                  <ul className="list-disc pl-5 space-y-2">
+                    {Array.isArray(result.product_names) ? 
+                      result.product_names.map((name, index) => (
+                        <li key={index} className="text-lg">{name}</li>
+                      )) : 
+                      <li className="text-lg">{result.product_name || "No product names available"}</li>
+                    }
+                  </ul>
                 </div>
                 
                 <div className="p-4 bg-green-50 rounded-lg">
                   <h3 className="text-xl font-bold text-green-700 mb-2">Suggested Price</h3>
                   <p className="text-lg">{result.suggested_price}</p>
+                  
+                  {result.price_explanation && (
+                    <div className="mt-2 pt-2 border-t border-green-200">
+                      <h4 className="text-lg font-semibold text-green-600">Why This Price</h4>
+                      <p className="text-md">{result.price_explanation}</p>
+                    </div>
+                  )}
                 </div>
                 
                 <div className="p-4 bg-purple-50 rounded-lg">

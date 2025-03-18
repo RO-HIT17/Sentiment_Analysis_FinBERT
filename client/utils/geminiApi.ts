@@ -114,14 +114,20 @@ TARGET AUDIENCE:
 - Primary Interest: ${targetAudience.interests || "Not specified"}
 
 Based on this information, please provide the following in valid JSON format only:
-- A catchy product name
-- A suggested competitive price point
+- Suggest 3-4 potential product names
+- A suggested competitive price point with an explanation for why this price is appropriate
 - A compelling marketing caption tailored to the target audience
 
 Return ONLY a JSON object with the following format:
 {
-  "product_name": "Your suggested product name",
+  "product_names": [
+    "First suggested product name",
+    "Second suggested product name",
+    "Third suggested product name",
+    "Fourth suggested product name (optional)"
+  ],
   "suggested_price": "Your suggested price",
+  "price_explanation": "Your explanation for why this price point is appropriate",
   "suggested_caption": "Your suggested marketing caption"
 }
 `;
