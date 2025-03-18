@@ -52,9 +52,9 @@ export const Navbar = () => {
                 "data-[active=true]:text-primary data-[active=true]:font-medium",
               )}
               color="foreground"
-              href="/results"
+              href="/LaunchOptimization"
             >
-              Results
+              Product Optimization 
             </NextLink>
           </NavbarItem>
         </ul>
