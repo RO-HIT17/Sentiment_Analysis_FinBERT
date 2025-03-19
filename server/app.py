@@ -6,6 +6,7 @@ from general_sentiment_analysis import analyze
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import word_suggestions as ss
+import word_suggester as ws
 
 app = Flask(__name__)
 CORS(app)
@@ -111,7 +112,7 @@ def get_suggestions():
 
     sentence = data['sentence']
     
-    result = ss.process_sentence(sentence)
+    result = ws.process_sentence(sentence)
     
     return jsonify(result), 200
 
