@@ -57,6 +57,20 @@ export const Navbar = () => {
               Product Optimization 
             </NextLink>
           </NavbarItem>
+
+          <NavbarItem>
+            <NextLink
+              className={clsx(
+                linkStyles({ color: "foreground" }),
+                "data-[active=true]:text-primary data-[active=true]:font-medium",
+              )}
+              color="foreground"
+              href="/CompetitorAnalysisbyreviews"
+            >
+              Competitor Analysis by reviews 
+            </NextLink>
+          </NavbarItem>
+
         </ul>
       </NavbarContent>
 
