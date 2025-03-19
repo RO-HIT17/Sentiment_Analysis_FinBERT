@@ -1,2 +1,4 @@
 finetuned_finBERT_epoch_2.model
 finetuned_finBERT_epoch_1.model
+.env
+word_suggester.py
